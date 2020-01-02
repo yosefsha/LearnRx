@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 
+
 class ViewController: UIViewController {
     
     var btn:UIButton!
@@ -57,7 +58,13 @@ class ViewController: UIViewController {
     }
     
     @objc func nextButtonAction(){
-        
+        var urlstr = ""
+        if let fromtextfield = textField.text, fromtextfield.isEmpty == false  {
+            urlstr = fromtextfield
+        } else {
+            urlstr = "https://unsplash.com/photos/pAWY7xrsLwc/download?force=true"
+        }
+        DefaultImageService.sharedImageService.imageFromURL(URL(string: urlstr)!, reachabilityService: <#T##ReachabilityService#>)
     }
 }
 
