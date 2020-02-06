@@ -25,6 +25,7 @@ class ViewController: UIViewController {
     
 
     var btn:UIButton!
+    var btn2:UIButton!
 
     var textField:UITextField!
 
@@ -40,7 +41,7 @@ class ViewController: UIViewController {
 
         super.viewDidLoad()
 
-        setupButton()
+        setupButtons()
 
         setupTextfield()
 
@@ -50,12 +51,12 @@ class ViewController: UIViewController {
 
 
 
-    func setupButton(){
+    func setupButtons(){
 
         btn = UIButton()
-
+        btn2 = UIButton()
         
-
+///btn1 setup
         btn.addTarget(self, action: #selector(nextButtonAction), for: .touchUpInside)
 
         btn.setTitle("Button Title",for: .normal)
@@ -79,6 +80,32 @@ class ViewController: UIViewController {
                btn.centerYAnchor.constraint(equalTo: view.centerYAnchor),
 
                ])
+        
+        
+/// setup btn2
+        btn2.addTarget(self, action: #selector(tryButtonAction), for: .touchUpInside)
+
+         btn2.setTitle("try",for: .normal)
+
+         btn2.titleLabel?.font = .systemFont(ofSize: 20)
+
+        btn2.backgroundColor = .systemGreen
+
+         btn2.setTitleColor(.black, for: .normal)
+
+
+
+            view.addSubview(btn2)
+
+            btn2.translatesAutoresizingMaskIntoConstraints = false
+
+            NSLayoutConstraint.activate([
+
+                btn2.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+
+                btn2.topAnchor.constraint(equalTo: btn.bottomAnchor, constant:30),
+
+                ])
 
     }
 
@@ -132,9 +159,7 @@ class ViewController: UIViewController {
 
         if let reach = try? DefaultReachabilityService() {
 
-             imagObservable = DefaultImageService.sharedImageService.imageFromURL(URL(string: urlstr)!, reachabilityService: reach)
-
-            
+            imagObservable = DefaultImageService.sharedImageService.imageFromURL(URL(string: urlstr)!, reachabilityService: reach)
 
             imagObservable?.subscribe(onNext: { image in
 
@@ -162,6 +187,45 @@ class ViewController: UIViewController {
 
                     }
 
+       
+
+    }
+    
+    
+    @objc func tryButtonAction(){
+
+        class Tag {
+            var tag: String = ""
+            init (tag: String) {
+                self.tag = tag
+            }
+        }
+
+        let getRequestReadHTML : Observable<String> = Observable
+                                    .just("<HTML><BODY>Hello world</BODY></HTML>")
+
+        func getTagsFromHtml(htmlBody: String) -> Observable<Tag> {
+            return Observable.create { obx in
+
+                // do parsing on htmlBody as necessary
+                print("obx:\(obx)")
+                obx.onNext(Tag(tag: "<HTML>"))
+                obx.onNext(Tag(tag: "<BODY>"))
+                obx.onNext(Tag(tag: "</BODY>"))
+                obx.onNext(Tag(tag: "</HTML>"))
+
+                obx.onCompleted()
+
+                return Disposables.create()
+            }
+        }
+
+        getRequestReadHTML
+            .flatMap { getTagsFromHtml(htmlBody: $0) }
+            .subscribe (onNext: { e in
+                print("e:\(e)")
+                print(e.tag)
+            })
        
 
     }

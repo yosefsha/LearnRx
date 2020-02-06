@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1FAE2794EA644F7F66AF2118 /* Pods_LearnRx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9376962CBF8758164C587F3C /* Pods_LearnRx.framework */; };
 		AE781E8777A102816D1A7303 /* Pods_LearnRxTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10E54029D9AC5F60A27F4C8 /* Pods_LearnRxTests.framework */; };
+		C0450A0323D07EB60022D50E /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0450A0223D07EB60022D50E /* BluetoothManager.swift */; };
 		C049991922E0BC28006EECF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C049991822E0BC28006EECF1 /* AppDelegate.swift */; };
 		C049991B22E0BC28006EECF1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C049991A22E0BC28006EECF1 /* ViewController.swift */; };
 		C049991E22E0BC28006EECF1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C049991C22E0BC28006EECF1 /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 		C07CA60423BE313B00C718E5 /* BaseWithImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07CA60323BE313B00C718E5 /* BaseWithImageVC.swift */; };
 		C07CA60623BE31C700C718E5 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07CA60523BE31C700C718E5 /* FontExtension.swift */; };
 		C07CA60823BE3D5600C718E5 /* PlayWithRx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07CA60723BE3D5600C718E5 /* PlayWithRx.swift */; };
+		C07CA66F23CDAF2200C718E5 /* protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07CA66E23CDAF2100C718E5 /* protocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +43,7 @@
 		9376962CBF8758164C587F3C /* Pods_LearnRx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LearnRx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BCB52F6A79CC2E675AF634D /* Pods-LearnRxTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnRxTests.debug.xcconfig"; path = "Target Support Files/Pods-LearnRxTests/Pods-LearnRxTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9EC29EEAA60883F5D460F04F /* Pods-LearnRx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnRx.debug.xcconfig"; path = "Target Support Files/Pods-LearnRx/Pods-LearnRx.debug.xcconfig"; sourceTree = "<group>"; };
+		C0450A0223D07EB60022D50E /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		C049991522E0BC28006EECF1 /* LearnRx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnRx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C049991822E0BC28006EECF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C049991A22E0BC28006EECF1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +64,7 @@
 		C07CA60323BE313B00C718E5 /* BaseWithImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWithImageVC.swift; sourceTree = "<group>"; };
 		C07CA60523BE31C700C718E5 /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
 		C07CA60723BE3D5600C718E5 /* PlayWithRx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayWithRx.swift; sourceTree = "<group>"; };
+		C07CA66E23CDAF2100C718E5 /* protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = protocols.swift; sourceTree = "<group>"; };
 		C4535378702AFE74E7CB079D /* Pods-LearnRxTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnRxTests.release.xcconfig"; path = "Target Support Files/Pods-LearnRxTests/Pods-LearnRxTests.release.xcconfig"; sourceTree = "<group>"; };
 		E10E54029D9AC5F60A27F4C8 /* Pods_LearnRxTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LearnRxTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F04447E7822F46421D281658 /* Pods-LearnRx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnRx.release.xcconfig"; path = "Target Support Files/Pods-LearnRx/Pods-LearnRx.release.xcconfig"; sourceTree = "<group>"; };
@@ -145,6 +149,8 @@
 				C07CA60323BE313B00C718E5 /* BaseWithImageVC.swift */,
 				C07CA60523BE31C700C718E5 /* FontExtension.swift */,
 				C07CA60723BE3D5600C718E5 /* PlayWithRx.swift */,
+				C07CA66E23CDAF2100C718E5 /* protocols.swift */,
+				C0450A0223D07EB60022D50E /* BluetoothManager.swift */,
 			);
 			path = LearnRx;
 			sourceTree = "<group>";
@@ -334,7 +340,9 @@
 				C07CA60023BE2D6300C718E5 /* ActivityIndicator.swift in Sources */,
 				C049991922E0BC28006EECF1 /* AppDelegate.swift in Sources */,
 				C07CA60823BE3D5600C718E5 /* PlayWithRx.swift in Sources */,
+				C07CA66F23CDAF2200C718E5 /* protocols.swift in Sources */,
 				C07CA60423BE313B00C718E5 /* BaseWithImageVC.swift in Sources */,
+				C0450A0323D07EB60022D50E /* BluetoothManager.swift in Sources */,
 				C07CA5FA23BE2A4D00C718E5 /* Dependencies.swift in Sources */,
 				C07CA60623BE31C700C718E5 /* FontExtension.swift in Sources */,
 				C07CA5F523BE0D7000C718E5 /* ImageService.swift in Sources */,

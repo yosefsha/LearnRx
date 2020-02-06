@@ -78,12 +78,22 @@ class DefaultImageService: ImageService {
                     }
                     else {
                         // fetch from network
-                        decodedImage = self.`$`.URLSession.rx.data(request: URLRequest(url: url))
-                            .do(onNext: { data in
-                                self._imageDataCache.setObject(data as AnyObject, forKey: url as AnyObject)
-                            })
-                            .flatMap(self.decodeImage)
-                            .trackActivity(self.loadingImage)
+                        decodedImage = self.`$`.URLSession.rx.response(request: URLRequest(url: url))
+                        .map({ pair -> Data in
+                            
+                        if 200 ..< 300 ~= pair.0.statusCode {
+                            return pair.1
+                        }
+                        else {
+                            throw RxCocoaURLError.httpRequestFailed(response: pair.0, data: pair.1)
+                            }
+//                            .do(onNext: { data in
+//                                self._imageDataCache.setObject(data as AnyObject, forKey: url as AnyObject)
+//                            })
+                            
+                        }
+                        ).flatMap(self.decodeImage)
+                        .trackActivity(self.loadingImage)
                     }
                 }
                 
@@ -91,7 +101,7 @@ class DefaultImageService: ImageService {
                     self._imageCache.setObject(image, forKey: url as AnyObject)
                 })
             }
-    }
+        }
 
     /**
     Service that tries to download image from URL.
