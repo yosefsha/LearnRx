@@ -76,6 +76,7 @@ public struct RequestInfo {
 
 }
 
+extension String: Error {}
 
 public struct ProgressInfo {
     var identifier: String

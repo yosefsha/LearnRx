@@ -27,6 +27,7 @@
 		C07CA60623BE31C700C718E5 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07CA60523BE31C700C718E5 /* FontExtension.swift */; };
 		C07CA60823BE3D5600C718E5 /* PlayWithRx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07CA60723BE3D5600C718E5 /* PlayWithRx.swift */; };
 		C07CA66F23CDAF2200C718E5 /* protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07CA66E23CDAF2100C718E5 /* protocols.swift */; };
+		C0DD8BC4248F7A5D003A225F /* testCreateDeffered.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DD8BC3248F7A5D003A225F /* testCreateDeffered.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		C07CA60523BE31C700C718E5 /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
 		C07CA60723BE3D5600C718E5 /* PlayWithRx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayWithRx.swift; sourceTree = "<group>"; };
 		C07CA66E23CDAF2100C718E5 /* protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = protocols.swift; sourceTree = "<group>"; };
+		C0DD8BC3248F7A5D003A225F /* testCreateDeffered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testCreateDeffered.swift; sourceTree = "<group>"; };
 		C4535378702AFE74E7CB079D /* Pods-LearnRxTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnRxTests.release.xcconfig"; path = "Target Support Files/Pods-LearnRxTests/Pods-LearnRxTests.release.xcconfig"; sourceTree = "<group>"; };
 		E10E54029D9AC5F60A27F4C8 /* Pods_LearnRxTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LearnRxTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F04447E7822F46421D281658 /* Pods-LearnRx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnRx.release.xcconfig"; path = "Target Support Files/Pods-LearnRx/Pods-LearnRx.release.xcconfig"; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				C049992D22E0BC29006EECF1 /* LearnRxTests.swift */,
+				C0DD8BC3248F7A5D003A225F /* testCreateDeffered.swift */,
 				C049992F22E0BC29006EECF1 /* Info.plist */,
 			);
 			path = LearnRxTests;
@@ -353,6 +356,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0DD8BC4248F7A5D003A225F /* testCreateDeffered.swift in Sources */,
 				C049992E22E0BC29006EECF1 /* LearnRxTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

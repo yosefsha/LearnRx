@@ -117,10 +117,12 @@ class LearnRxTests: XCTestCase {
         
         op.progress.subscribe(onNext: { p in
             print("received progress: \(p)")
-            }, onCompleted: { print("progress completed")}).disposed(by: disposebag)
+            }, onCompleted: {
+                print("progress completed")}
+        ).disposed(by: disposebag)
         
         
-        op.progress.scan( [ProgressInfo](), accumulator: { values, newVal in
+        op.progress.scan([ProgressInfo](), accumulator: { values, newVal in
             return Array(values + [newVal]).suffix(2)
         }).filter({ list in
             list.count == 2
@@ -150,10 +152,117 @@ class LearnRxTests: XCTestCase {
         wait(for: [completeExp], timeout: 20)
     }
     
+    func testTakeUntil() {
+        
+            let completeExp = expectation(description: "com")
+            
+
+            createOp().subscribe(onNext:{ args in
+                    print("receivec data: \(args.data.count)")
+            }, onCompleted: {
+                print("completed!!!")
+                completeExp.fulfill()
+            }).disposed(by: disposebag)
+            
+            let progressSource = ProgressSource()
+            guard let op = op else {
+                XCTFail("no op!!!!")
+                return
+            }
+            
+            op.progress.subscribe(onNext: { p in
+                print("received progress: \(p)")
+                }, onCompleted: {
+                    print("progress completed")}
+            ).disposed(by: disposebag)
+            
+        
+            op.progress
+            .takeWhile({ p in
+                p.currentProgress < 50
+            }).subscribe(onNext:{ values in
+                print("values: \(values)")
+            }).disposed(by: disposebag)
+            
+            progressSource.progressObservable.bind(to: op._progress).disposed(by: disposebag)
+            progressSource._progressObservable.onNext(ProgressInfo(identifier: "aaa", currentProgress: 30, totalExpected: 600))
+            progressSource._progressObservable.onNext(ProgressInfo(identifier: "aaa", currentProgress: 40, totalExpected: 600))
+            progressSource._progressObservable.onNext(ProgressInfo(identifier: "aaa", currentProgress: 40, totalExpected: 600))
+            progressSource._progressObservable.onNext(ProgressInfo(identifier: "aaa", currentProgress: 50, totalExpected: 600))
+
+            
+            
+            op._progress.onCompleted()
+            
+            progressSource._progressObservable.onNext(ProgressInfo(identifier: "aaa", currentProgress: 50, totalExpected: 60))
+
+            
+    //        op._responseBehaviour.onNext(BLEResponseType(data: Data(count: 20), info: RequestInfo()))
+    //        op._responseBehaviour.onNext(BLEResponseType(data: Data(count: 30), info: RequestInfo()))
+            op._responseBehaviour.onCompleted()
+            
+            wait(for: [completeExp], timeout: 20)
+    }
+
+    func testFilteredError() {
+        
+            let completeExp = expectation(description: "com")
+        
+            createOp().subscribe(onNext:{ args in
+                    print("receivec data: \(args.data.count)")
+            }, onCompleted: {
+                print("completed!!!")
+                completeExp.fulfill()
+            }).disposed(by: disposebag)
+            
+            let progressSource = ProgressSource()
+            guard let op = op else {
+                XCTFail("no op!!!!")
+                return
+            }
+            
+            op.progress.subscribe(onNext: { p in
+                print("received progress: \(p)")
+                }, onCompleted: {
+                    print("progress completed")}
+            ).disposed(by: disposebag)
+            
+        
+            op.progress
+            .filter({ p in
+                p.currentProgress < 50
+            }).subscribe(onNext:{ values in
+                print("values: \(values)")
+            }, onError: { err in
+                print("error received: \(err)")
+            }).disposed(by: disposebag)
+            
+            progressSource.progressObservable.bind(to: op._progress).disposed(by: disposebag)
+            progressSource._progressObservable.onNext(ProgressInfo(identifier: "aaa", currentProgress: 30, totalExpected: 600))
+            progressSource._progressObservable.onNext(ProgressInfo(identifier: "aaa", currentProgress: 60, totalExpected: 600))
+            progressSource._progressObservable.onNext(ProgressInfo(identifier: "aaa", currentProgress: 40, totalExpected: 600))
+
+            progressSource._progressObservable.onError("eeeerrror")
+
+            progressSource._progressObservable.onNext(ProgressInfo(identifier: "aaa", currentProgress: 70, totalExpected: 600))
+            progressSource._progressObservable.onNext(ProgressInfo(identifier: "aaa", currentProgress: 80, totalExpected: 600))
+
+            
+            
+            op._progress.onCompleted()
+            
+            progressSource._progressObservable.onNext(ProgressInfo(identifier: "aaa", currentProgress: 50, totalExpected: 60))
+
+            
+    //        op._responseBehaviour.onNext(BLEResponseType(data: Data(count: 20), info: RequestInfo()))
+    //        op._responseBehaviour.onNext(BLEResponseType(data: Data(count: 30), info: RequestInfo()))
+            op._responseBehaviour.onCompleted()
+            
+            wait(for: [completeExp], timeout: 20)
+    }
     func testBLEresponse() {
         
         let completeExp = expectation(description: "com")
-        
 
         createOp().subscribe(onNext:{ args in
                 print("receivec data: \(args.data.count)")
@@ -192,4 +301,3 @@ struct  ProgressValues {
     var last: ProgressInfo?
 }
 
-extension String: Error {}
